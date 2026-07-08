@@ -11,13 +11,14 @@ class Dropdown(BaseComponent):
 
     def build_component(self, entity_id, model):
         options = []
+        selected_id = str(entity_id)
         for text, value in self.component_data(entity_id, model):
-            option = Option(text, value=value, selected="selected" if str(value) == entity_id else "")
+            is_selected = str(value) == selected_id
+            option = Option(text, value=value, selected=True if is_selected else False)
             options.append(option)
 
-
         dropdown_settings = {
-            'name': self.name
+            'name': self.name,
             }
         
         # if model.name:
